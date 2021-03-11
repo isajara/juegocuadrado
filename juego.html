@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Juego del cuadrado</title>
+</head>
+ <script>
+  cantidad =0; resta=0;numx=0;numy=0;click=0;puntos=0;numero=61;finalizacion=0;
+ </script>
+
+<style>
+.body
+{
+  position:absolute;
+  top: 80px;
+  left: 720px;
+  width: 400px;
+  height: 70px;
+  border-left: 1px solid white;
+    border-right: 1px solid white;
+  border-top: 1px solid white;
+    border-bottom: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-family: Ink Free;
+  color: white;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.tiempo
+{
+  position:absolute;
+  top: 80px;
+  left: 220px;
+  width: 400px;
+  height: 70px;
+  border-left: 1px solid white;
+    border-right: 1px solid white;
+  border-top: 1px solid white;
+    border-bottom: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-family: Ink Free;
+  color: white;
+  background-color: rgba(0, 0, 0, .5);
+}
+  .zonadejuego
+
+{
+  position: absolute;
+  left:150px; 
+  top:200px;
+  width: 1050px;
+  height: 400px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+  border-top: 1px solid white;
+    border-bottom: 1px solid white;
+  font-size: 150px;
+  font-family: Ink Free;
+  color: white;
+  background-image: url("zonadejuego.jfif");
+  background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cuadrito
+{
+  position:relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-family: Ink Free;
+  color: black;
+  border-radius: 55%;
+  background-image: url("luna.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bodytitulo
+{
+  position: absolute;
+  left:720px; 
+  top:50px;
+  width: 400px;
+  height: 30px;
+  border-left: 1px solid white;
+    border-right: 1px solid white;
+  border-top: 1px solid white;
+    border-bottom: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-family: Ink Free;
+  color: white;
+  background-color: rgba(0, 0, 0, .7);
+}
+
+.tiempotitulo
+{
+  position: absolute;
+  left:220px; 
+  top:50px;
+  width: 400px;
+  height: 30px;
+  border-left: 1px solid white;
+    border-right: 1px solid white;
+  border-top: 1px solid white;
+    border-bottom: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-family: Ink Free;
+  color: white;
+  background-color: rgba(0, 0, 0, .7);
+}
+
+ .volver
+  {
+  position: absolute;
+  top: 300px;
+  left: 60px;
+  text-decoration: none;
+  padding: 10px;
+  font-weight: 800;
+  font-size: 20px;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  font-family: Ink Free;
+  color: white;
+  background-image: url("zonadejuego.jfif");
+  color: white;
+  }
+
+  .rejugar
+  {
+  position: absolute;
+  top: 270px;
+  left: 1270px;
+  text-decoration: none;
+  padding: 10px;
+  font-weight: 800;
+  font-size: 20px;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  font-family: Ink Free;
+  color: white;
+  background-image: url("zonadejuego.jfif");
+  color: white;
+  }
+</style>
+
+<body background="fondo.jfif" style="background-repeat: no-repeat;background-size: cover;" onload="aleatorio()" onmousemove="" >
+
+<div class="zonadejuego" id="zonadejuego">  
+<div class="cuadrito" id="cuadrito" onmousedown="clico(event)"></div>
+</div>
+
+<div class="body" id="body"></div>
+<div class="bodytitulo" id="bodytitulo">Puntaje</div> 
+
+
+<div class="tiempo" id="tiempo"></div>
+<div class="tiempotitulo" id="tiempotitulo">Tiempo restante</div>
+
+<a class="volver" href="index.html">V<br>O<br>L<br>V<br>E<br>R</a>
+<a class="rejugar" href="javascript:location.reload()">R<br>E<br>I<br>N<br>T<br>E<br>N<br>T<br>A<br>R</a>
+
+
+
+<script>
+
+  function cuenta()
+  {   
+    if(numero>=1)
+    {
+    numero=numero-1;
+    cuadrito=document.getElementById('cuadrito');
+    tiempo.innerHTML=numero;
+      if(numero==0)
+       {
+      final();
+       }
+    }
+      
+  }
+
+
+
+  function aleatorio()
+  {  
+    cantidad=0;resta=0;mermar=0;
+    numx=Math.floor((Math.random() * (941-10))+10);
+      numy=Math.floor((Math.random() * (291-10))+10);
+      click=Math.floor((Math.random() * (11-1))+1);
+      mermar=click
+    cuadrito.innerHTML=click;
+    cuadrito.style.left=numx+"px";
+    cuadrito.style.top=numy+"px";
+
+      cuenta=setInterval(cuenta,1000);      
+}
+  
+
+  function clico()
+  {
+
+    cantidad=cantidad+1;
+        mermar--;
+        cuadrito.innerHTML=mermar;
+    numx=numx+10;
+    cuadrito.style.left=numx+"px";
+    
+    if(numx>=940)
+    {
+        numx=numx-20;
+    cuadrito.style.left=numx+"px";
+      if(numx<=290)
+        {
+               numx=numx+10;
+          cuadrito.style.left=numx+"px";
+        }
+    }
+
+    if(cantidad==click&&finalizacion==0)
+    {   
+          aleatorio();
+      puntos=puntos+10;
+      body.innerHTML=puntos;
+    }
+
+
+  }
+
+  function final()
+  {
+        clearInterval(cuenta);
+      tiempo.innerHTML="La cuenta terminó";
+      cuadrito.style.background="none";
+      zonadejuego.innerHTML="...    El juego ha    ...  ...     terminado     ...";
+  }
+
+  
+</script>
+</body>
+</html>
